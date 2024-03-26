@@ -1,5 +1,24 @@
+import java.util.HashSet;
+
 public class FirstMissingPositive41 {
-    static int firstMissingPositive(int[] nums) {
+
+    static int firstMissingPositiveBetter(int[] arr){
+        int n = arr.length;
+
+        HashSet<Integer> sp = new HashSet<>();
+
+        for(int i=0; i<n; i++){
+            sp.add(arr[i]);
+        }
+
+        for(int i=1; i<Integer.MAX_VALUE; i++){
+            if(sp.contains(i)) continue;
+            else return i;
+        }
+
+        return -1;
+    }
+    static int firstMissingPositiveOptimal(int[] nums) {
         int n = nums.length;
 
         boolean contains1 = false;
@@ -34,9 +53,14 @@ public class FirstMissingPositive41 {
         return n+1;
     }
     public static void main(String[] args) {
-        int[] arr = {7,8,9,11,12};
-        int res = firstMissingPositive(arr);
+        int[] arr = {1,2,3,11,12};
 
-        System.out.println("First Missing Positive : "+res);
+        // Better Approach using HashSet
+        int res1 = firstMissingPositiveBetter(arr);
+        System.out.println("First Missing Positive : "+res1);
+
+        // Optimal Approach using {number as index} pattern which is also used in "Find Repeat and Missing Number"
+        int res = firstMissingPositiveOptimal(arr);
+        System.out.println("First Missing Positive : "+res1);
     }
 }
