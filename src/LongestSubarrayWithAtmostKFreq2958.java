@@ -1,7 +1,6 @@
 import java.util.HashMap;
 
 public class LongestSubarrayWithAtmostKFreq2958 {
-
     static int maxSubarrayLengthOptimal(int[] arr, int k) {
         int n = arr.length;
 
