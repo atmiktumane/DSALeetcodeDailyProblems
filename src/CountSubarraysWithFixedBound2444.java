@@ -1,3 +1,7 @@
+// Question : 2444. Count Subarrays with Fixed Bound
+// TC : O(N)
+// SC : O(1)
+
 public class CountSubarraysWithFixedBound2444 {
     static long countSubarrays(int[] nums, int minK, int maxK) {
         int n = nums.length;
