@@ -1,5 +1,38 @@
+// Question: 2962. Count Subarrays Where Max Element appears atleast K times
+// TC : O(N)
+// SC : O(1)
 public class CountSubarraysWhereMaxEleAppearsKTimes2962 {
-    static long countSubarrays(int[] nums, int k) {
+
+    static long countSubarraysBrute(int[] nums, int k) {
+        int n = nums.length;
+
+        if(n < k) return 0;
+
+        // get max Element
+        int maxEle = Integer.MIN_VALUE;
+        for(int i=0; i<n; i++){
+            if(nums[i] > maxEle){
+                maxEle = nums[i];
+            }
+        }
+
+        long res = 0;
+
+        for(int i=0; i<n; i++){
+            int freq=  0;
+            for(int j=i; j<n; j++){
+                if(nums[j] == maxEle){
+                    freq++;
+                }
+
+                if(freq >= k){
+                    res++;
+                }
+            }
+        }
+        return res;
+    }
+    static long countSubarraysOptimal(int[] nums, int k) {
         int n = nums.length;
 
         if(n < k) return 0;
@@ -22,7 +55,7 @@ public class CountSubarraysWhereMaxEleAppearsKTimes2962 {
                 freqMaxEle++;
             }
 
-            while(freqMaxEle>=k && i<=j){
+            while(freqMaxEle>=k && i<j){
                 res += n-j;
                 if(nums[i] == maxEle){
                     freqMaxEle--;
@@ -39,8 +72,12 @@ public class CountSubarraysWhereMaxEleAppearsKTimes2962 {
         int[] arr = {1,3,2,3,3};
         int k=2;
 
-        long ans = countSubarrays(arr, k);
+        // Brute Force Approach : Nested For loop  ->  TC: O(N^2) , SC: O(1)
+        long ans1 = countSubarraysBrute(arr, k);
+        System.out.println("Total count of Subarrays where Max. Element Appears Atleast K Times : "+ans1);
 
-        System.out.println("Total count of Subarrays where Max. Element Appears Atleast K Times : "+ans);
+        // Optimal Approach : Sliding Window  ->  TC: O(N) , SC: O(1)
+        long ans2 = countSubarraysOptimal(arr, k);
+        System.out.println("Total count of Subarrays where Max. Element Appears Atleast K Times : "+ans2);
     }
 }
