@@ -45,6 +45,23 @@ public class TimeNeededToBuyTickets2073 {
         return pass;
     }
 
+    static int timeRequiredToBuyOptimal(int[] tickets, int k) {
+        int n = tickets.length;
+
+        int pass = 0;
+
+        for(int i=0; i<n; i++){
+            if(i<=k){
+                pass += Math.min(tickets[i], tickets[k]);
+            }
+            else{
+                pass += Math.min(tickets[i], tickets[k]-1);
+            }
+        }
+
+        return pass;
+    }
+
     public static void main(String[] args){
         int[] tickets = {3,2,3};
         int k=1;
@@ -54,7 +71,11 @@ public class TimeNeededToBuyTickets2073 {
 //        System.out.println("Time needed to Buy all tickets at index "+k + " is : "+res1);
 
         // BETTER APPROACH  -> TC: O(K*N)  ;  SC: O(1)
-        int res2 = timeRequiredToBuyBetter(tickets, k);
-        System.out.println("Time needed to Buy all tickets at index "+k + " is : "+res2);
+//        int res2 = timeRequiredToBuyBetter(tickets, k);
+//        System.out.println("Time needed to Buy all tickets at index "+k + " is : "+res2);
+
+        // OPTIMAL APPROACH  ->  TC: O(N)  ;  SC: O(1)
+        int res3 = timeRequiredToBuyOptimal(tickets, k);
+        System.out.println("Time needed to Buy all tickets at index "+k + " is : "+res3);
     }
 }
