@@ -27,13 +27,34 @@ public class TimeNeededToBuyTickets2073 {
         return pass;
     }
 
+    static int timeRequiredToBuyBetter(int[] tickets, int k) {
+        int n = tickets.length;
+
+        int pass = 0;
+
+        while(tickets[k] != 0){
+            for(int i=0; i<n; i++){
+                if(tickets[i]==0) continue;
+
+                tickets[i] = tickets[i]-1;
+                pass++;
+
+                if(tickets[k]==0) break;
+            }
+        }
+        return pass;
+    }
+
     public static void main(String[] args){
         int[] tickets = {3,2,3};
         int k=1;
 
         // BRUTE FORCE ->  TC: O(N)*O(K*N)  ;  SC: O(N)
-        int res1 = timeRequiredToBuyBrute(tickets, k);
-        System.out.println("Time needed to Buy all tickets at index "+k + " is : "+res1);
+//        int res1 = timeRequiredToBuyBrute(tickets, k);
+//        System.out.println("Time needed to Buy all tickets at index "+k + " is : "+res1);
 
+        // BETTER APPROACH  -> TC: O(K*N)  ;  SC: O(1)
+        int res2 = timeRequiredToBuyBetter(tickets, k);
+        System.out.println("Time needed to Buy all tickets at index "+k + " is : "+res2);
     }
 }
