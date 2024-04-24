@@ -1,21 +1,4 @@
 public class NthTribonacciNumber1137 {
-    static int findTribonacciOptimal(int n) {
-        if(n==0) return n;
-
-        if(n==1 || n==2) return 1;
-
-        int t0 = 0, t1=1, t2 = 1;
-        int sum = 0;
-
-        for(int i=3; i<=n; i++){
-            sum = t0 + t1 + t2;
-            t0 = t1;
-            t1 = t2;
-            t2 = sum;
-        }
-        return sum;
-    }
-
     static int findTribonacciBrute(int n){
         if(n==0) return n;
 
@@ -32,6 +15,23 @@ public class NthTribonacciNumber1137 {
         }
 
         return arr[n];
+    }
+
+    static int findTribonacciOptimal(int n) {
+        if(n==0) return n;
+
+        if(n==1 || n==2) return 1;
+
+        int t0 = 0, t1=1, t2 = 1;
+        int sum = 0;
+
+        for(int i=3; i<=n; i++){
+            sum = t0 + t1 + t2;
+            t0 = t1;
+            t1 = t2;
+            t2 = sum;
+        }
+        return sum;
     }
 
     public static void main(String[] args) {
