@@ -1,5 +1,12 @@
 public class NthTribonacciNumber1137 {
+
     static int findTribonacciBrute(int n){
+        if(n==0) return 0;
+        if(n==1 || n==2) return 1;
+
+        return findTribonacciBrute(n-1) + findTribonacciBrute(n-2) + findTribonacciBrute(n-3);
+    }
+    static int findTribonacciBetter(int n){
         if(n==0) return n;
 
         if(n==1 || n==2) return 1;
@@ -35,16 +42,22 @@ public class NthTribonacciNumber1137 {
     }
 
     public static void main(String[] args) {
-        int n = 5;
 
-        // Brute Force -> TC: O(n) , SC: O(N)
+        // Tribonacci Series:  0 1 1 2 4 7 13 24 44 81
+        int n = 9;
+
+        // Brute Force -> TC: O(3^n) Exponential , SC: O(N)
         int res1 = findTribonacciBrute(n);
-        System.out.println(res1);
+        System.out.print(res1 + " ");
+
+
+        // Better Approach -> TC: O(n) , SC: O(N)
+//        int res2 = findTribonacciBetter(n);
+//        System.out.println(res2);
 
         // Optimal Approach  -> TC: O(1) , SC: O(1)
-//        int res2 = findTribonacciOptimal(n);
-//
-//        System.out.println(res2);
+//        int res3 = findTribonacciOptimal(n);
+//        System.out.println(res3);
 
 
     }
